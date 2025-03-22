@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Safety Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            padding: 20px 0;
+        }
+        
+        .container {
+            position: relative;
+            width: 1300px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header  {
+            color: red;
+            text-shadow: 100px;
+            text
+        }
+        .fire-logo img{
+            justify-content: center;
+            width: 400px;
+            height: 400px;
+            background-size: contain;
+            border-radius: 50%;
+            z-index: 2;
+            position: absolute; top: 10%; left: 35%;
+        }
+        .btn {
+            width: 180px;
+            height: 180px;
+            background-color: yellow;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px red;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: black;
+            text-decoration: none; 
+        }
+        
+        
+        .btn a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none; 
+            color: black; 
+        }
+        
+        
+        .btn img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 5px;
+        }
+        
+        
+        .btn span {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .buttons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .btn {
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px red;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .btn img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 5px;
+        }
+        
+        
+        .btn-1 { position: absolute; top: 5%; left: 10%; }
+        .btn-2 { position: absolute; top: 5%; right: 10%; }
+        .btn-3 { position: absolute; bottom: 5%; left: 10%; }
+        .btn-4 { position: absolute; bottom: 5%; right: 10%; }
+        
+        
+        
+        .floor {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .first-floor {
+            order: 1; 
+        }
+        
+        .second-floor {
+            order: 2; 
+        }
+        
+        
+        .floor-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: lightblue;
+            padding: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        
+        .lights {
+            width: 150px;
+            height: 20px;
+            background: red;
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
+        
+        a {
+            text-decoration: none; 
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /* For Zoom start*/
+        .btn {
+            
+            background-color: yellow;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px red;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Super smooth easing */
+        }
+        
+        .btn btn1 {
+            width: 180px;
+            height: 60px;
+            background-color: yellow;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px red;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out; 
+        }
+        
+        
+        .btn:hover {
+            transform: scale(1.2); 
+        }
+        
+        
+        .btn:active {
+            transform: scale(1.1); 
+        }
+        
+        
+        @keyframes zoomEffect {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        
+        .pulse {
+            animation: zoomEffect 1s infinite;
+        }
+        /* For Zoom end*/
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <!--<div class="floor-indicator"> 
+            <div id="GndFloor" class="fire-bar"> <h2>100%</h2></div>
+            
+        </div> -->
+        
+        
+        
+        <!-- Buttons -->
+        <div class="btn btn-1">
+            <a href="#"  onclick="startCamera()">
+                <img src="{{ url_for('static', filename='images/camera.jpg') }}" alt="811">
+                <span>CAMERA ON</span>
+            </a>
+        </div>
+        <div class="btn btn-2">
+            <a href="#"   onclick="startCapturing()">
+                <img src="{{ url_for('static', filename='images/TrainingOnOff.jpg') }}" alt="812">
+                <span>TRAINING ON</span>
+            </a>
+        </div>
+        <!-- I will error start 810 -->
+        <div class="fire-logo">
+            <img src="{{ url_for('static', filename='images/FireLogo.jpg') }}" alt="810">
+        </div>
+        <div class="btn btn-3">
+            <a href="#">
+                <img src="{{ url_for('static', filename='images/Emali.jpg') }}" alt="813">
+                <span>FIND USER EMAIL</span>
+            </a>
+        </div>
+        <div class="btn btn-4">
+            <a href="#">
+                <img src="{{ url_for('static', filename='images/FindUserID.jpg') }}" alt="814">
+                <span>FIND USER ID</span>
+            </a>
+        </div>
+
+        <div class="floor-indicator"> 
+            <div id="FirstFloor" class="fire-bar">🟢🟢🟢🟢🟢</div>
+            <p id="predictionResult">Fire Risk: 0%</p>
+        </div>
+    </div>
+
+        <!-- Hidden Camera Feed -->
+        <video id="video" autoplay playsinline style="display:none;"></video>
+        <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+    </div>
+
+    <script>
+        let videoStream = null;
+        let captureInterval = null;
+
+        function startCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then((stream) => {
+                    videoStream = stream;
+                    document.getElementById("video").srcObject = stream;
+                })
+                .catch(console.error);
+        }
+
+        function stopCamera() {
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+                videoStream = null;
+            }
+        }
+
+        function startCapturing() {
+            if (!captureInterval) {
+                captureInterval = setInterval(captureImage, 2000);
+            }
+        }
+
+        function stopCapturing() {
+            clearInterval(captureInterval);
+            captureInterval = null;
+        }
+
+        function captureImage() {
+            const video = document.getElementById("video");
+            if (!videoStream) {
+                console.error("Camera is not started.");
+                return;
+            }
+
+            const canvas = document.getElementById("canvas");
+            const ctx = canvas.getContext("2d");
+
+            canvas.width = 320;
+            canvas.height = 240;
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const imageUrl = canvas.toDataURL("image/png");
+
+            fetch('/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: imageUrl })
+            })
+            .then(response => response.json())
+            .then(data => {
+                let fireRisk = data.fire_risk_percentage || 0;
+                updateFireSignal(fireRisk);
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+            });
+        }
+
+        function updateFireSignal(fireRisk) {
+            const indicator = document.getElementById("FirstFloor");
+            let signal;
+
+            if (fireRisk >= 80) {
+                signal = "🔴🔴🔴🔴🔴";  // High danger
+            } else if (fireRisk >= 50) {
+                signal = "🟠🔴🔴🟢🟢";  // Medium risk
+            } else if (fireRisk >= 30) {
+                signal = "🟢🟠🔴🟢🟢";  // Low risk
+            } else {
+                signal = "🟢🟢🟢🟢🟢";  // Safe
+            }
+
+            indicator.innerHTML = signal;
+            document.getElementById("predictionResult").innerText = `Fire Risk: ${fireRisk}%`;
+        }
+    </script>
+
+</body>
+</html>
